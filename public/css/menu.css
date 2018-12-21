@@ -1,0 +1,201 @@
+/* Login */
+
+
+/* } */
+
+body{
+	font-family: 'Merriweather', serif;
+	font-family: 'Source Sans Pro', sans-serif;
+	background-color: dodgerblue;
+}
+
+
+
+
+.main-section{
+	margin: 0px auto;
+	margin-top: 80px;
+	padding: 0 auto;
+
+}
+
+
+.modal-content{
+	background-color: dodgerblue;
+	opacity: .98;
+	width: 130%;
+	height:100%;
+	background-color: white;
+	padding-bottom: 20px;
+	box-shadow: 7px 7px 3px 7px rgba(0, 0, 0, .3);
+}
+
+.user-img{
+	margin-top: -50px;
+	padding-bottom: 60px;
+
+}
+.user-img img{
+	width: 140px;
+
+}
+.form-group input{
+	width: 95%;
+	margin: 0px auto;
+	padding-left: 40px;
+	margin-bottom: 8%;
+	font-size: 17px;
+	font-weight: bold;
+	color: black;
+}
+.validate{
+	margin-top: -20px;
+	display: none;
+}
+.validate p{
+	color: red;
+
+}
+.input-error{
+	border:2px solid red;
+}
+.rememberme{
+	margin-top: -6px;
+	margin-left: -210px;
+	margin-bottom: 20px;
+}
+.btn{
+	width: 210px;
+	margin-bottom: 2px;
+	border-radius: 6%;
+	font-size: 18px;
+	background-color: dodgerblue;
+	font-weight: bold;
+	color: white;
+}
+.forgot{
+	border-bottom:  2px  solid;
+	padding-top: 15px;
+	padding-bottom: 10px;
+}
+
+.btnnew{
+	width: 210px;
+	margin: 10px auto;
+	background-color: white;
+	color: dodgerblue;
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 6%;
+
+}
+.btnnew:hover{
+	font-weight: bold;
+	cursor: pointer;
+}
+
+span{
+	margin-left:  -170px;
+	position: absolute;
+	font-size: 28px;
+	color: dodgerblue;
+
+}
+
+@media only screen and (max-width: 768px) {
+
+
+.modal-content{
+	width: 150%;
+	height:100%;
+	margin-top: -75px;
+	margin-left: -80px;
+	box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, .3);
+}
+
+.user-img{
+	margin-top: 2.5px;
+
+}
+
+.rememberme{
+	margin-left: -268px;
+}
+
+span{
+	margin-left:  -195px;
+	position: absolute;
+	font-size: 28px;
+}
+.validate p{
+	color: red;
+	margin-left: -200px;
+}
+
+}
+
+@media only screen and (max-width: 575px) {
+
+
+.modal-content{
+	width: 100%;
+	height:100%;
+	margin: -85px -40px;
+	margin-right: 0px;
+
+}
+
+.user-img{
+	margin-top: 15.5px;
+	padding-bottom: 40px;
+
+
+}
+
+
+.user-img img{
+	width: 25%;
+
+
+}
+
+
+.form-group input{
+	width: 90%;
+	margin-left: 7%;
+}
+.btn{
+	width: 88%;
+	margin-left: 6.5%;
+}
+
+.rememberme{
+	margin-left:0%;
+}
+
+body{
+	margin-right: -65px;
+	margin-bottom: -50px;
+}
+span{
+	position: absolute;
+	font-size: 28px;
+	margin-left: -38%;
+}
+.validate p{
+	position: relative;
+	color: red;
+	margin-left: -38.5%;
+}
+
+
+
+}
+
+@media only screen and (max-width: 450px) {
+.validate p{
+	position: relative;
+	color: red;
+	margin-left: 7.5%;
+}
+}
