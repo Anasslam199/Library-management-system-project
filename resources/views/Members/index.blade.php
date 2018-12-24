@@ -25,16 +25,29 @@
 </style>
 
 <h3 style="text-align:center;">  {{__('messages.MembersList')}}  </h3>
-<a class="btn btn-primary" style="margin-left: 78%;" value="Modifier" href="{{url('/members/generate-pdf')}}"
-  role="button" target="_blank" ><i class="fas fa-print"></i> {{__('messages.MembersPrint')}} </a>
 <div class="container-fuild  col-lg-9 col-md-12 col-sm-12"style="margin: 2% auto;">
   @if(Session::has('message'))
 <div class="alert alert-success" role="alert" style="margin:0 auto;width:35%;">
 <p style="text-align:center;">{{ Session::get('message') }}  </p>
 </div>
   @endif
+  <div class="form-row">
+   <div class="form-group col-md-3">
+     <a class="btn btn-primary" style="margin-left: 78%;" value="Modifier" href="{{ url('members/create') }}"
+       role="button"  ><i class="fas fa-print"></i> {{__('messages.NewMember')}} </a>
+
+   </div>
+   <div class="form-group col-md-3">
+     <a class="btn btn-primary" style="margin-left: 78%;" value="Modifier" href="{{url('/members/generate-pdf')}}"
+       role="button" target="_blank" ><i class="fas fa-print"></i> {{__('messages.MembersPrint')}} </a>
+   </div>
+   <div class="form-group col-md-3">
+
+   </div>
+ </div>
+
 <!-- Edit Moda -->
-<table id="booksTable" class="table table-striped" >
+<table id="booksTable" class="table table-striped">
    <thead>
       <th> {{__('messages.MemberID')}} </th>
       <th id="picture"> {{__('messages.MemberImage')}} </th>

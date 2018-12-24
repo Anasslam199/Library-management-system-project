@@ -9,6 +9,12 @@ use Session;
 
 class bookController extends Controller
  {
+
+   function __construct(Request $request)
+   {
+       $this->middleware('auth');
+   }
+   
    public function index(){
      $books = Book::all();
      $themes = Theme::all();

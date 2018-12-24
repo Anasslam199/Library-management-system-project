@@ -1,9 +1,9 @@
-b<?php
+<?php
 return [
   // Menu
 
     'Library' => 'Librairie',
-    'Books'=>'Livres',
+    "Books"=>"Livres",
     'BooksList' => 'Liste de livres',
     'NewBook' => 'Nouveau livre',
 
@@ -102,6 +102,16 @@ return [
     "Edit"=> "Modifier",
     "Details"=> "Détails",
     "Print"=> "Imprimer",
+
+
+// Home
+"Home" => "Accueil",
+"Thelibraryservices" => "Les service de bibliothèque",
+"Activity" => "Activité",
+"WelcometotheLibrary"=>"Bienvenue à la bibliothèque",
+"Afriendly"=>"Bienvenue à la bibliothèque, un environnement d’apprentissage convivial et favorable. ",
+
+
 
 
 

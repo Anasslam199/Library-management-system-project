@@ -26,12 +26,21 @@
 <p style="text-align:center;">{{ Session::get('message') }}  </p>
 </div>
   @endif
-  <a class="btn btn-primary" style="margin-left: 78%;" value="Modifier" href="{{url('/books/generate-pdf')}}"
-    role="button" target="_blank" ><i class="fas fa-print"></i> {{__('messages.MembersPrint')}} </a>
-
-  <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-     <i class="fas fa-plus-circle"></i> {{__('messages.Newtheme')}}
-  </button>
+  <div class="form-row">
+   <div class="form-group col-md-3">
+     <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        <i class="fas fa-plus-circle"></i> {{__('messages.Newtheme')}}
+     </button>
+   </div>
+   <div class="form-group col-md-3">
+     <a class="btn btn-primary" value="Modifier" href="{{ url('books/create') }}"
+       role="button" target="_blank" ><i class="fas fa-print"></i> {{__('messages.NewBook')}} </a>
+   </div>
+   <div class="form-group col-md-3">
+       <a class="btn btn-primary"  value="Modifier" href="{{url('/books/generate-pdf')}}"
+         role="button" target="_blank" ><i class="fas fa-print"></i> {{__('messages.MembersPrint')}} </a>
+   </div>
+ </div>
 <div class="form-gorup">
   <form method="get" action="{{url('books/filter')}}">
     <div class="input-group col-md-12" style="margin-top:1%;margin-left:-2%;margin-bottom:2%;">

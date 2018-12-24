@@ -14,6 +14,11 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class membersController extends Controller
 {
+
+  function __construct(Request $request)
+  {
+      $this->middleware('auth');
+  }
    public function index(){
      uniqid();
      $members = Member::all();
@@ -144,16 +149,17 @@ class membersController extends Controller
        Session::flash('message', 'Deleted '.$member->firstname.' '.$member->lastname.' with success!');
        return  View('Members.index',['members'=>$members]);
      }
-      public function sendmail($id)
-     {
-       $member = Member::findorfail($id);
-       $data = array('name' => $member->firstname,
-       'message' => "hello",
-       'email' => $member->email,
-     );
-       Mail::send(new sendMail($data));
-       // return Redirect('members')->with('message', 'email send  successfully');
-     }
+     public function sendMail()
+          {
+            $id =1;
+            $member = Member::findorfail($id);
+            $data = array('name' => $member->firstname,
+            'message' => "hello",
+            'email' => 'anasslam69@gmail.com',
+          );
+            Mail::to('anasslam69@gmail.com')->send(new sendMail($data));
+            return Redirect('members')->with('message', 'email send  successfully');
+          }
      public function generatePDF()
      {
        // $members = Member::all();

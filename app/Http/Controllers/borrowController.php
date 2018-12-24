@@ -11,10 +11,16 @@ use App\Borrow;
 use Carbon\Carbon;
 use Session;
 use DB;
-
+use Auth;
 
 class borrowController extends Controller
 {
+
+  function __construct(Request $request)
+  {
+      $this->middleware('auth')->is_admin();
+  }
+
 
   public function index(){
     $borrows =  Borrow::all();
@@ -22,7 +28,7 @@ class borrowController extends Controller
 
 
   }
-public function total()
+public function dashboard()
 {
  $totalbooks   = (int)count(Book::all());
  $totalmembers = (int)count(Member::all());

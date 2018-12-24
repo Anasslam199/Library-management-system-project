@@ -27,10 +27,16 @@
     <!-- BEGIN CSS for this page -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
     <!-- END CSS for this page -->
-
-
-
-
+<style media="screen">
+  .content-page{
+    padding-left: 0px;
+  }
+  table{
+    align : center !important;
+    margin-left: -10%  !important;
+    width: 120% !important;
+  }
+</style>
 </head>
 
 <body class="adminbody">
@@ -283,21 +289,8 @@
   <!-- End Sidebar -->
 
 
-    <div class="content-page">
-
-    <!-- Start content -->
-        <div class="content">
-
-      <div class="container-fluid" style="margin-top:8%;">
-
-       @yield('content')
-
-      </div>
-      <!-- END container-fluid -->
-
-    </div>
-    <!-- END content -->
-
+    <div class="content-page" style="margin-top:5%;">
+      @yield('content')
     </div>
   <!-- END content-page -->
 

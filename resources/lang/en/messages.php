@@ -108,6 +108,12 @@ return [
     "Edit"=> "Edit",
     "Details"=> "Details",
     "Print"=> "Print",
+    // Home
+    "Home" => "Home",
+    "Thelibraryservices" => "The library services",
+    "Activity" => "Activité",
+    "WelcometotheLibrary"=>"Welcome to the Library",
+    "Afriendly"=>"Welcome to the Library  a friendly and supportive learning environment. ",
 ];
 
  ?>

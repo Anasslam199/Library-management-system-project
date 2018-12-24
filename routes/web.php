@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'borrowController@dashboard');
+Route::get('/home','HomeController@index');
 
 
 // Books
@@ -59,7 +61,7 @@ Route::get('books/generate-pdf','bookController@generatePDF');
 Route::get('borrows/generate-pdf','borrowController@generatePDF');
 
 Route::get('members/generate-pdf/{id}','membersController@generatePDF_Member');
-Route::get('/', 'borrowController@total');
+
 
 
 

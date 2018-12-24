@@ -26,10 +26,20 @@
 <p style="text-align:center;">{{ Session::get('message') }}  </p>
 </div>
   @endif
+  <div class="form-row">
+   <div class="form-group col-md-3">
+     <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        <i class="fas fa-plus-circle"></i>  {{__('messages.Newborrow')}}
+     </button>
+   </div>
+   <div class="form-group col-md-3">
+     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong"
+     target="_blank" ><i class="fas fa-print"></i>   {{__('messages.MembersPrint')}}
+     </button>
+   </div>
+ </div>
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong"
-target="_blank" ><i class="fas fa-print"></i>   {{__('messages.MembersPrint')}}
-</button>
+
 
 <!-- Modal  -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -82,9 +92,7 @@ target="_blank" ><i class="fas fa-print"></i>   {{__('messages.MembersPrint')}}
   </div>
 </div>
   <!-- Button trigger modal -->
-  <button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-     <i class="fas fa-plus-circle"></i>  {{__('messages.Newborrow')}}
-  </button>
+
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
