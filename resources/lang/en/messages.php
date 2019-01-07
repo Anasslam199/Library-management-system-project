@@ -7,12 +7,24 @@ return [
     'Books'=>'Books',
     'BooksList' => 'Books List',
     'NewBook' => 'New Book',
+    "Cover" =>  "Cover",
+    "Number" => "Number",
+
+    "ReservationsList" => "Reservations List",
+    "Reservation_for"=> "For",
+    "Borrowing"=>"Borrowing",
+    "Created_at" => "Register date",
 
 
+
+    'Member_id'=>'Member ID',
     'Members'=>'Members',
+    'Member_name'=>'Membrer Name',
+    'Book_title'=>'Book Title',
     'MembersList'=>'Members List',
     'NewMember'=>'New Member',
     'Deleteconfirm' => "Do you want  delete this person",
+    "Cancel"=>"Cancel",
 
     'Borrows'=>'Borrows',
     'BorrowsList' => 'Borrows List',
@@ -24,6 +36,7 @@ return [
     'Newtheme' =>'New theme',
     'Filterby' => 'Filter by',
     'Exist' => 'Exist',
+    'Publishing_house' => 'Publishing house',
 
     'BooksList' => 'Books List',
     'Newtheme' =>'New theme',
@@ -31,6 +44,7 @@ return [
     'Exist' => 'Exist',
     "Addanewtheme" =>"Add a new theme",
     "ThemeTitle" => "Title",
+    "Themes_management" =>"Themes management",
 
     // Books Table
     "ID" => "ID",
@@ -48,6 +62,7 @@ return [
     "BookTitle" => "Title",
     "BookAuthor" => "Author",
     "BookTheme" => "Theme",
+    "Themes" => "Themes",
     "BookDescription" => "Description",
     "Save" => "Save",
     "Close" => "Close",
@@ -60,6 +75,9 @@ return [
     "MemberImage" => "Image",
     "MemberName" => "Name",
     "MemberCIN" => "CIN",
+    "MemberGender" => "Gender",
+    "Male" => "Male",
+    "Female" => "Female",
     "MemberPhonenumber" => "Phone number :",
     "MemberDeposit" => "Deposit",
     "MemberAction" => "Action",
@@ -110,10 +128,18 @@ return [
     "Print"=> "Print",
     // Home
     "Home" => "Home",
+    "About" => "About",
+    "Login" => "Login",
     "Thelibraryservices" => "The library services",
     "Activity" => "Activité",
     "WelcometotheLibrary"=>"Welcome to the Library",
     "Afriendly"=>"Welcome to the Library  a friendly and supportive learning environment. ",
+    "Yourprofile" => "My profile",
+    "Yourreservations" => "My reservations",
+    "Yourborrows" => "My borrows",
+    "From" => "From",
+    "To" => "To",
+    "Remove" => "Remove",
 ];
 
  ?>

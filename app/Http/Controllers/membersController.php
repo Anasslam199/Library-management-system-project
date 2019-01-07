@@ -5,10 +5,12 @@ use App\Mail\sendMail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Member;
+use App\User;
 use Mail;
 use session;
 use PDF;
 use DateTime;
+
 use Intervention\Image\ImageManagerStatic as Image;
 
 
@@ -25,10 +27,10 @@ class membersController extends Controller
      return view ("Members.index",["members"=>$members]);
    }
      public function create(){
+
        return view("Members.add");
      }
      public function store(Request $request){
-
        $request->validate([
           'firstname' => 'required|min:1|max:18|regex:/^[a-zA-Z]+$/u',
           'lastname' => 'required|min:1|max:18|regex:/^[a-zA-Z]+$/u',
@@ -48,6 +50,7 @@ class membersController extends Controller
        $member->cin = $request->cin;
        $member->phonenumber = $request->phonenumber;
        $member->birthdate = $request->birthdate;
+       $member->gender = $request->gender;
        $member->email = $request->email;
        $member->adress = $request->adress;
        $member->deposit = $request->deposit;
@@ -62,7 +65,7 @@ class membersController extends Controller
          //$file->resize(300, 300);
 
          $fileWithExt = $request->file('picture')->getClientOriginalName();
-         $path= $file->move('storage/uploads',time().'_'.$file->getClientOriginalName());
+         $path= $file->move('storage/uploads/members',time().'_'.$file->getClientOriginalName());
          $fileExtension = $request->file('picture')->getClientOriginalExtension();
          $PATHName = pathinfo($path);
 
@@ -72,8 +75,22 @@ class membersController extends Controller
          }
 
          $member->picture  = $PATHName['dirname'].'/'.$PATHName['basename'];
-         $member->save();
-         // return Redirect('members')->with('message', 'success Image Upload successfully');
+         $membercount = count(Member::where('firstname', '=', $request->firstname)->get());
+         // return \Auth::user();
+         $user = new User();
+         $user->name = $request->firstname;
+         $user->email = $request->email;
+         $user->username = $request->firstname."L26m".$membercount;
+         $member->user_username = $request->firstname."L26m".$membercount;
+         $user->password = md5($request->firstname."L26m".$membercount);
+
+         $userSaved = $user->save();
+          if($userSaved) {
+              $member->save();
+          }else {
+            return "Errore d'inscription";
+          }
+          // return Redirect('members')->with('message', 'success Image Upload successfully');
          $members = Member::all();
          Session::flash('message', 'Added '.$member->firstname.' '.$member->lastname.' with success!');
          return  View('Members.index',['members'=>$members]);
@@ -100,6 +117,7 @@ class membersController extends Controller
        $member->cin = $request->cin;
        $member->phonenumber = $request->phonenumber;
        $member->birthdate = $request->birthdate;
+       $member->gender = $request->gender;
        $member->email = $request->email;
        $member->adress = $request->adress;
        $member->deposit = $request->deposit;
@@ -111,7 +129,7 @@ class membersController extends Controller
          $file = $request->file('picture');
 
          $fileWithExt = $request->file('picture')->getClientOriginalName();
-         $path= $file->move('storage/uploads',time().'_'.$file->getClientOriginalName());
+         $path= $file->move('storage/uploads/members',time().'_'.$file->getClientOriginalName());
          $fileExtension = $request->file('picture')->getClientOriginalExtension();
          $PATHName = pathinfo($path);
 
@@ -151,14 +169,15 @@ class membersController extends Controller
      }
      public function sendMail()
           {
-            $id =1;
-            $member = Member::findorfail($id);
-            $data = array('name' => $member->firstname,
-            'message' => "hello",
-            'email' => 'anasslam69@gmail.com',
-          );
-            Mail::to('anasslam69@gmail.com')->send(new sendMail($data));
-            return Redirect('members')->with('message', 'email send  successfully');
+
+            $id =100;
+       $member = Member::findorfail($id);
+       $data = array('name' => $member->firstname,
+       'message' => "hello",
+       'email' => 'anasslam69@gmail.com',
+     );
+       Mail::to('anasslam69@gmail.com')->send(new sendMail($data));
+       return Redirect('members')->with('message', 'email send  successfully');
           }
      public function generatePDF()
      {

@@ -10,10 +10,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public function is_admin ()
-    {
-        return $this->is_admin;
-    }
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','username'
+        'name', 'email', 'password','username', 'is_admin'
     ];
 
     /**
@@ -32,4 +28,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function member()
+    {
+        return $this->belongsTo('App\Member');
+    }
 }

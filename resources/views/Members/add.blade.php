@@ -62,6 +62,30 @@
   </div>
 </div>
 
+<div class="form-group row">
+  <label for="inputPassword" class="col-sm-2 col-form-label "> {{__('messages.MemberGender')}} : </label>
+  <div class="col-sm-10">
+
+    <select class="form-control  @if($errors->has('gender')) is-invalid @endif" id="gender" name="gender">
+
+      <option value="Male" @if (old('gender') == "Male") {{ 'selected' }} @endif>{{__('messages.Male')}}</option>
+      <option value="Female" @if (old('gender') == "Female") {{ 'selected' }} @endif>{{__('messages.Female')}}</option>
+    </select>
+
+    @if ($errors->has('gender'))
+    <p style="color:red;"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+       {{ $errors->first('gender') }}</p>
+   @endif
+
+
+
+    @if ($errors->has('gender'))
+    <p style="color:red;"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+       {{ $errors->first('gender') }}</p>
+   @endif
+  </div>
+</div>
+
 
 <!-- cin -->
 <div class="form-group row">

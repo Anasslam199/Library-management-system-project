@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app3')
 
 @section('content')
 <div class="container">
@@ -44,7 +44,7 @@
 
                             <div class="col-md-6">
                                 <input id="username" type="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}"
-                                name="username" value="{{ old('username') }}" 
+                                name="username" value="{{ old('username') }}"
                                 required>
 
                                 @if ($errors->has('username'))

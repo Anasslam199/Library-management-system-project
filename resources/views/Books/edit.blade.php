@@ -4,7 +4,7 @@
 <h2 style="text-align:center;">  {{__('messages.Editabook')}}  </h2>
 
 
-<form method="post" action="{{url('books/'.$book->id)}}">
+<form method="post" action="{{url('books/'.$book->id)}}" enctype="multipart/form-data">
   {{ csrf_field() }}
   <input name="_method" type="hidden" value="PUT">
   <div class="form-group row">
@@ -31,6 +31,18 @@
   </div>
 </div>
 <div class="form-group row">
+<label for="inputPassword" class="col-sm-2 col-form-label">{{__('messages.Publishing_house')}} : </label>
+<div class="col-sm-10">
+  <!-- @if($errors->has('title')) has-error @endif -->
+  <input type="text" class="form-control @if($errors->has('title')) is-invalid @endif" id="publishing_house" name="publishing_house" placeholder="Entrer the publishing_house"
+  value="{{$book->publishing_house}}" >
+  @if ($errors->has('publishing_house'))
+  <p style="color:red;"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+     {{ $errors->first('publishing_house') }}</p>
+ @endif
+</div>
+</div>
+<div class="form-group row">
   <label for="inputPassword" class="col-sm-2 col-form-label">{{__('messages.BookTheme')}}</label>
   <div class="col-sm-10">
 
@@ -48,6 +60,19 @@
     <p style="color:red;"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
        {{ $errors->first('theme') }}</p>
    @endif
+  </div>
+
+</div>
+<div class="form-group row">
+  <label for="inputPassword" class="col-sm-2 col-form-label "> {{__('messages.Cover')}} : </label>
+  <div class="col-sm-10">
+   <input type="file"  class="form-control @if($errors->has('cover')) is-invalid @endif" id="" name="cover"
+   placeholder="cover"
+   value="{{old('cover')}}">
+   @if ($errors->has('cover'))
+   <p style="color:red;"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      {{ $errors->first('cover') }}</p>
+  @endif
   </div>
 
 </div>

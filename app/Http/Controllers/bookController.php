@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Book;
 use App\Theme;
+use App\Reservation;
 use Session;
 
 class bookController extends Controller
@@ -14,7 +15,50 @@ class bookController extends Controller
    {
        $this->middleware('auth');
    }
-   
+
+
+   // Themes
+   public function themes(){
+     $themes = Theme::all();
+     return  View('Themes.index',["themes"=>$themes]);
+   }
+   public function themeDestroy(Request $request)
+   {
+      $theme = Theme::findorfail($request->iddelete);
+      $theme->delete();
+      $themes = Theme::all();
+      return  View('Themes.index',["themes"=>$themes]);
+   }
+   public function themeUpdate(Request $request)
+   {
+       $description = $request->idupdate;
+         $theme = Theme::where("description",$description)->get();
+      $theme =  $theme[0];
+      $theme->description = $request->new_theme;
+      $theme->save();
+      $themes = Theme::all();
+      Session::flash('message', 'Updated '.$theme->description.' with success!');
+      return  View('Themes.index',["themes"=>$themes]);
+   }
+     public function themeStore(Request $request){
+       $theme = new theme();
+       $theme->description = $request->description;
+       $theme->save();
+       $themes = Theme::all();
+       Session::flash('message', 'Added '.$theme->description.' with success!');
+       return  View('Themes.index',["themes"=>$themes]);
+     }
+   public function theme(Request $request){
+     $theme = new theme();
+     $theme->description = $request->description;
+     $theme->save();
+     // return redirect("/books")->with('message', 'Added the new theme'.$request->descritpion.' with success!');
+     $books = Book::all();
+     $themes = Theme::all();
+     Session::flash('message', 'Added '.$theme->description.' with success!');
+     return  View('Books.index',['books'=>$books,"themes"=>$themes]);
+   }
+
    public function index(){
      $books = Book::all();
      $themes = Theme::all();
@@ -57,19 +101,38 @@ class bookController extends Controller
      return view('Books.add',['themes'=>$themes]);
    }
    public function store(Request $request){
-     $request->validate([
-        'title' => 'required|min:1|max:20',
-        'author' => 'required',
-        'theme' => 'required',
-        'description' => 'required|min:5|max:200',
-    ]);
+     $path ="";
+     $PATHName = "";
+     if ($request->cover != "") {
+       $file = $request->file('cover');
+       $fileWithExt = $request->file('cover')->getClientOriginalName();
+       $path= $file->move('storage/uploads/books',time().'_'.$file->getClientOriginalName());
+       $fileExtension = $request->file('cover')->getClientOriginalExtension();
+       $PATHName = pathinfo($path);
+     }
+      else{
+         return "hello.png";
+       }
+           for ($i=0; $i <$request->number ; $i++) {
+    //  $request->validate([
+    //     'title' => 'required|min:1|max:20',
+    //     'author' => 'required',
+    //     'theme' => 'required',
+    //     'description' => 'required|min:5|max:100',
+    // ]);
      $book = new book();
      $book->title = $request->title;
      $book->author = $request->author;
+     $book->publishing_house = $request->publishing_house;
      $book->theme_id = $request->theme;
      $book->description = $request->description;
      $book->status = '1';
-     $book->save();
+
+      $book->cover  = $PATHName['dirname'].'/'.$PATHName['basename'];
+
+           $book->save();
+      }
+
      $books = Book::all();
      $themes = Theme::all();
      Session::flash('message', 'Added '.$book->title.' with success!');
@@ -82,18 +145,35 @@ class bookController extends Controller
      return view('books/edit',['book'=>$book],['themes'=>$themes]);
    }
    public function update($id,Request $request){
-     $request->validate([
-        'title' => 'required|min:1|max:20',
-        'author' => 'required',
-        'theme' => 'required',
-        'description' => 'required|min:5|max:200',
-    ]);
+    //  $request->validate([
+    //     'title' => 'required|min:1|max:20',
+    //     'author' => 'required',
+    //     'theme' => 'required',
+    //     'description' => 'required|min:5|max:200',
+    // ]);
      $book = Book::findorfail($id);
      $book->title = $request->title;
      $book->author = $request->author;
+     $book->publishing_house = $request->publishing_house;
      $book->theme_id = $request->theme;
      $book->description = $request->description;
      $book->status = '1';
+     $path ="";
+     $PATHName = "";
+     if ($request->cover != "") {
+
+       $file = $request->file('cover');
+
+       $fileWithExt = $request->file('cover')->getClientOriginalName();
+       $path= $file->move('storage/uploads/books',time().'_'.$file->getClientOriginalName());
+       $fileExtension = $request->file('cover')->getClientOriginalExtension();
+       $PATHName = pathinfo($path);
+      }
+      else{
+         return "hello.png";
+       }
+     $book->cover  = $PATHName['dirname'].'/'.$PATHName['basename'];
+
      $book->save();
      // return redirect("/books")->with('message', ' Updated '.$book->title.' with success!');
      $books = Book::all();
@@ -115,16 +195,7 @@ class bookController extends Controller
      $book = Book::findorfail($id);
      return view('Books.show',["book"=>$book]);
    }
-   public function theme(Request $request){
-     $theme = new theme();
-     $theme->description = $request->description;
-     $theme->save();
-     // return redirect("/books")->with('message', 'Added the new theme'.$request->descritpion.' with success!');
-     $books = Book::all();
-     $themes = Theme::all();
-     Session::flash('message', 'Added '.$theme->description.' with success!');
-     return  View('Books.index',['books'=>$books,"themes"=>$themes]);
-   }
+
    public function generatePDF()
    {
   $books = Book::all();

@@ -69,7 +69,8 @@
 
                         <a class="nav-link" id="navbarDropdown" role="button"
                      href="{{url('locale/en')}}">
-                      <img src="{{asset('images/jack_flag.png')}}" alt="france flag" style="width:30px;">
+                     <img src="{{asset('images/france_flag.jpeg')}}" alt="france flag" style="width:30px;">
+
                      </a>
                     </li>
                       @else
@@ -77,7 +78,7 @@
 
                       <a class="nav-link" id="navbarDropdown" role="button"
                    href="{{url('locale/fr')}}">
-                    <img src="{{asset('images/france_flag.jpeg')}}" alt="france flag" style="width:30px;">
+                      <img src="{{asset('images/jack_flag.png')}}" alt="france flag" style="width:30px;">
                    </a>
                   </li>
                   @endif
@@ -244,16 +245,17 @@
       <ul>
 
           <li class="submenu">
-            <a class="active" href="index.html"><i class="fa fa-fw fa-bars"></i><span> Dashboard </span> </a>
+            <a class="active" href="{{ url('/dashboard') }}"><i class="fa fa-fw fa-bars"></i><span>Dashboard  </span> </a>
                     </li>
 
           <li class="submenu">
-                        <a href="{{ url('/') }}"><i class="fa fa-fw fa-area-chart"></i><span> Charts </span> </a>
+                        <a href="{{ url('/') }}"><i class="fas fa-home"></i><span> {{__('messages.Home')}}  </span> </a>
                     </li>
 
           <li class="submenu">
               <a href="#"><i class="fas fa-book"></i> <span> {{__('messages.Books')}} </span> <span class="menu-arrow"></span></a>
               <ul class="list-unstyled">
+                <li><a href="{{ url('themes') }}">{{__('messages.Themes_management')}}</a></li>
                 <li><a href="{{ url('books') }}">{{__('messages.BooksList')}}</a></li>
                 <li><a href="{{ url('books/create') }}">{{__('messages.NewBook')}}</a></li>
               </ul>
@@ -275,7 +277,10 @@
                             </ul>
                     </li>
 
-            </ul>
+      <li class="submenu">
+                 <a href="{{ url('borrows/reservation') }}">  <span> Reservations</span> </a>
+
+      </ul>
 
             <div class="clearfix"></div>
 

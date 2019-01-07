@@ -17,10 +17,8 @@ class Locale
      */
     public function handle($request, Closure $next)
     {
-        // echo "<script>alert('hello'); </script>";
-        $locale=Session::get('locale',Config::get('app.locale'));
+      $locale=Session::get('locale',Config::get('app.locale'));
         App::setlocale($locale);
-        // dd(App::setlocale($locale));
         return $next($request);
       }
 }

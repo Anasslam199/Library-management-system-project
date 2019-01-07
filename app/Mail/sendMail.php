@@ -29,9 +29,11 @@ class sendMail extends Mailable
      */
     public function build()
  {
-      return $this->from('from@example.com')->subject("end the borrow of book")->View("Members.message")->with(
+    //  return $this->from('from@example.com')->subject("end the borrow of book")->View("Members.message")->with(
 
         // return $this->subject("end the borrow of book")->View("Members.message")->with(
-          "data",$this->data);
+          //"data",$this->data);
+          return $this->from('from@example.com')->View("Members.message")->with("data", $this->data);
+
     }
 }

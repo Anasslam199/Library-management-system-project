@@ -6,12 +6,23 @@ return [
     "Books"=>"Livres",
     'BooksList' => 'Liste de livres',
     'NewBook' => 'Nouveau livre',
-
-
+    "Cover" =>  "Couverture",
+    "Number" => "Nombre",
+    "ReservationsList" => "Liste de Reservations",
+    "Reservation_for"=> "Pour",
+    "Borrowing"=>"Emprunter",
+    "Created_at" => "Date d'inscription",
+    'Publishing_house' => 'Maison d\'édition',
+    'Member_id'=>'ID Membre',
+    'Member_name'=>'Prénom de Membre',
+    'Book_title'=>'Title de Livre',
     'Members'=>'Membres',
+    "Male" => "Masculin",
+    "Female" => "Féminin",
     'MembersList'=>'Liste de membres',
     'NewMember'=>'Nouveau membre',
     'Deleteconfirm' => "Veux tu supprimer ce personne",
+    "Cancel"=>"Annuler",
 
     'Borrows'=>'Emprunts',
 
@@ -30,10 +41,12 @@ return [
     "Title" => "Titre",
     "Author" => "Auteur",
     "Theme" => "Thème",
+    "Themes" => "Thèmes",
     "Status" => "Statut",
     "Action" => "Action",
     "Existed" => "Existé",
     "Borrowed" => "Emprunté",
+    "Themes_management" =>"Gestion de thèmes",
 
     // New/Edit BOOK
     "Addanewbook" => "Ajouter un nouveau livre",
@@ -54,6 +67,7 @@ return [
     "MemberName" => "Nom complet",
 
     "MemberCIN" => "CIN",
+    "MemberGender" => "Gendre",
     "MemberPhonenumber" => "Num Tél",
     "MemberDeposit" => "Caution",
     "MemberAction" => "Action",
@@ -106,10 +120,19 @@ return [
 
 // Home
 "Home" => "Accueil",
+"About" => "A propre",
+"Login" => "Se connecter",
 "Thelibraryservices" => "Les service de bibliothèque",
 "Activity" => "Activité",
 "WelcometotheLibrary"=>"Bienvenue à la bibliothèque",
 "Afriendly"=>"Bienvenue à la bibliothèque, un environnement d’apprentissage convivial et favorable. ",
+
+"Yourprofile" => "Mon profil",
+"Yourreservations" => "Mes reservations",
+"Yourborrows" => "Mes emprunts",
+"From" => "De",
+"To" => "à",
+"Remove" => "Supprimer",
 
 
 

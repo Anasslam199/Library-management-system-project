@@ -252,10 +252,10 @@ margin-left: 7.5%;
 
 				</form>
 				<div class="col-12 forgot">
-					<a href="">Forgot password?</a>
+					<a href="{{ route('password.request') }}">Forgot password?</a>
 				</div>
 
-				<button type="button" class="btnnew"> New account </button>
+				<a type="button" href="{{ route('register')}}" class="btnnew"> New account </a>
 
 			</div>
 
