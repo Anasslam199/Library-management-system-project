@@ -17,4 +17,5 @@ class AppController extends Controller
      return Redirect(url(URL::previous()));
 
     }
+
 }

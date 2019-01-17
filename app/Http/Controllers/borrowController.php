@@ -14,7 +14,7 @@ use Carbon\Carbon;
 use Session;
 use DB;
 use Auth;
-
+// hwa hada ? nn bookcontroller
 class borrowController extends Controller
 {
 

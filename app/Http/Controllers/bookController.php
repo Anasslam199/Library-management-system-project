@@ -15,38 +15,192 @@ class bookController extends Controller
    {
        $this->middleware('auth');
    }
-
-
-   // Themes
+   public function find_theme(Request $request)
+   {
+     $theme = Theme::Where("description",$request->theme_description)->get();
+     return count($theme);
+   }
    public function themes(){
      $themes = Theme::all();
+     //
      return  View('Themes.index',["themes"=>$themes]);
+   }
+   public function themeStore(Request $request){
+     $theme = new theme();
+     $theme->description = $request->description;
+     $theme->save();
+     $themes = Theme::all();
+     // Session::flash('message', 'Added '.$theme->description.' with success!');
+     // return  View('Themes.index',["themes"=>$themes]);
+     $output ="";
+     $total_row = $themes->count();
+     if($total_row > 0)
+     {
+      foreach($themes as $theme)
+      {
+       $output .= '
+       <tr>
+       <td><input type="checkbox" name="name="student_checkbox[] class="delete_customer" value='.$theme->id.' /></td>
+        <td>'.$theme->id.'</td>
+        <td>'.$theme->description.'</td>
+        <td>
+        <a style="color:white;" id="btnupdate" class="btn btn-primary" data-toggle="modal" data-value='.$theme->description.'
+        data-target="#exampleModalUpdate"> <i class="fas fa-edit"></i></a>
+        <a style="color:white;" id="theme_id" data-value='.$theme->id.'> </a>
+        <a style="color:white;" id="btndelete" class="btn btn-danger" data-toggle="modal" data-value='.$theme->id.'
+        data-target="#exampleModalDelete"> <i class="fas fa-trash-alt"></i>   </a>
+        </td>
+       </tr>
+       ';
+      }
+     }
+     else
+     {
+      $output = '
+      <tr>
+       <td align="center" colspan="5">No Data Found</td>
+      </tr>
+      ';
+     }
+
+     echo ($output);
+
    }
    public function themeDestroy(Request $request)
    {
       $theme = Theme::findorfail($request->iddelete);
       $theme->delete();
       $themes = Theme::all();
-      return  View('Themes.index',["themes"=>$themes]);
+      $output ="";
+      $total_row = $themes->count();
+      if($total_row > 0)
+      {
+       foreach($themes as $theme)
+       {
+        $output .= '
+        <tr>
+         <td><input type="checkbox" name="name="student_checkbox[] class="delete_customer" value='.$theme->id.' /></td>
+         <td>'.$theme->id.'</td>
+         <td>'.$theme->description.'</td>
+         <td>
+         <a style="color:white;" id="btnupdate" class="btn btn-primary" data-toggle="modal" data-value='.$theme->description.'
+         data-target="#exampleModalUpdate"> <i class="fas fa-edit"></i></a>
+         <a style="color:white;" id="theme_id" data-value='.$theme->id.'> </a>
+         <a style="color:white;" id="btndelete" class="btn btn-danger" data-toggle="modal" data-value='.$theme->id.'
+         data-target="#exampleModalDelete"> <i class="fas fa-trash-alt"></i>   </a>
+         </td>
+        </tr>
+        ';
+       }
+      }
+      else
+      {
+       $output = '
+       <tr>
+        <td align="center" colspan="5">No Data Found</td>
+       </tr>
+       ';
+      }
+
+      echo ($output);
+      // return  View('Themes.index',["themes"=>$themes]);
    }
    public function themeUpdate(Request $request)
    {
-       $description = $request->idupdate;
-         $theme = Theme::where("description",$description)->get();
+
+      $description = $request->old_theme;
+      $theme = Theme::where("description",$description)->get();
       $theme =  $theme[0];
       $theme->description = $request->new_theme;
       $theme->save();
       $themes = Theme::all();
-      Session::flash('message', 'Updated '.$theme->description.' with success!');
-      return  View('Themes.index',["themes"=>$themes]);
+      $output ="";
+      $total_row = $themes->count();
+      if($total_row > 0)
+      {
+       foreach($themes as $theme)
+       {
+        $output .= '
+        <tr>
+         <td><input type="checkbox" name="name="student_checkbox[] class="delete_customer" value='.$theme->id.' /></td>
+         <td>'.$theme->id.'</td>
+         <td>'.$theme->description.'</td>
+         <td>
+         <a style="color:white;" id="btnupdate" class="btn btn-primary" data-toggle="modal" data-value='.$theme->description.'
+         data-target="#exampleModalUpdate"> <i class="fas fa-edit"></i></a>
+         <a style="color:white;" id="theme_id" data-value='.$theme->id.'> </a>
+         <a style="color:white;" id="btndelete" class="btn btn-danger" data-toggle="modal" data-value='.$theme->id.'
+         data-target="#exampleModalDelete"> <i class="fas fa-trash-alt"></i>   </a>
+         </td>
+        </tr>
+        ';
+       }
+      }
+      else
+      {
+       $output = '
+       <tr>
+        <td align="center" colspan="5">No Data Found</td>
+       </tr>
+       ';
+      }
+
+      echo ($output);
+
+      // Session::flash('message', 'Updated '.$theme->description.' with success!');
+      // return  View('Themes.index',["themes"=>$themes]);
    }
-     public function themeStore(Request $request){
-       $theme = new theme();
-       $theme->description = $request->description;
-       $theme->save();
+     public function theme_destroy(Request $request){
+        $bool = is_array($request["delete_id"]);
+        if ($bool) {
+          $array_count = count($request["delete_id"]);
+          for ($i=0; $i <$array_count ; $i++) {
+            $theme = Theme::findorfail($request["delete_id"][$i]);
+            $theme->delete();
+          }
+        }
+        else {
+          $theme = Theme::findorfail($request["delete_id"]);
+          $theme->delete();
+        }
+
+
        $themes = Theme::all();
-       Session::flash('message', 'Added '.$theme->description.' with success!');
-       return  View('Themes.index',["themes"=>$themes]);
+       // Session::flash('message', 'Added '.$theme->description.' with success!');
+       // return  View('Themes.index',["themes"=>$themes]);
+       $output ="";
+       $total_row = $themes->count();
+       if($total_row > 0)
+       {
+        foreach($themes as $theme)
+        {
+         $output .= '
+         <tr>
+         <td><input type="checkbox" name="name="student_checkbox[] class="delete_customer" value='.$theme->id.' /></td>
+          <td>'.$theme->id.'</td>
+          <td>'.$theme->description.'</td>
+          <td>
+          <a style="color:white;" id="btnupdate" class="btn btn-primary" data-toggle="modal" data-value='.$theme->description.'
+          data-target="#exampleModalUpdate"> <i class="fas fa-edit"></i></a>
+          <a style="color:white;" id="theme_id" data-value='.$theme->id.'> </a>
+          <a style="color:white;" id="btndelete" class="btn btn-danger" data-toggle="modal" data-value='.$theme->id.'
+          data-target="#exampleModalDelete"> <i class="fas fa-trash-alt"></i>   </a>
+          </td>
+         </tr>
+         ';
+        }
+       }
+       else
+       {
+        $output = '
+        <tr>
+         <td align="center" colspan="5">No Data Found</td>
+        </tr>
+        ';
+       }
+
+       echo ($output);
+
      }
    public function theme(Request $request){
      $theme = new theme();

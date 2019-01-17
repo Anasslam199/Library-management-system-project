@@ -22,9 +22,9 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::get('/dashboard', 'borrowController@dashboard');
     // Books
     Route::get('themes', 'bookController@themes');
-    Route::post('themes/store', 'bookController@themeStore');
-    Route::delete('themes/destroy', 'bookController@themeDestroy');
-    Route::post('/themes/update', 'bookController@themeUpdate');
+    Route::post('themes/store', 'bookController@themeStore')->name("themeStore");
+    Route::POST('themes/destroy', 'bookController@theme_destroy')->name("themeDestroy");
+    Route::post('/themes/update', 'bookController@themeUpdate')->name("themeUpdate");
 
 
     Route::get('books/', 'bookController@index');
@@ -49,6 +49,7 @@ Route::group(['middleware' => 'is_admin'], function () {
 
     // Themes
     Route::post('books/theme', 'bookController@theme');
+    Route::post('books/theme', 'bookController@find_theme')->name("find_theme");
 
     // Members
     Route::get('members', 'membersController@index');
